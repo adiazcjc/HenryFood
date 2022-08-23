@@ -15,9 +15,6 @@ const getApi = async () => {
             image: el.image,
             diets: el.diets,
             dishTypes: el.dishTypes,
-            // steps: el.analyzedInstructions
-            // ? el.analyzedInstructions[0]
-            // : null,
             steps: el.analyzedInstructions
             .map((el) => {
               return el.steps.map((el) => {

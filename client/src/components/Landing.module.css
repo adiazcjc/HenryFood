@@ -72,13 +72,11 @@
 .container .wave {
     height: 100%;
     width: 100%;
-    background: #FFEFBA;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to left, #FFFFFF, #FFEFBA);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to left, #FFFFFF, #FFEFBA); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: #FFEFBA; 
+  background: -webkit-linear-gradient(to left, #FFFFFF, #FFEFBA);  
+  background: linear-gradient(to left, #FFFFFF, #FFEFBA); 
     
 }
-
-
 
 .wave path {
     stroke: none;

@@ -9,8 +9,6 @@ import Loading from "./Loading"
 import NavBar from "./NavBar"
 import styles from './Home.module.css'
 
-import SearchBar from "./SearchBar";
-
 export default function Home() {
     const dispatch = useDispatch()
     const allRecipes = useSelector((state) => state.recipes)

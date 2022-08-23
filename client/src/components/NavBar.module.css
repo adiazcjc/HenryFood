@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=DynaPuff&family=Open+Sans:wght@300;400;700;800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=DynaPuff&family=Open+Sans:wght@300;400;700;800&family=Rubik+Marker+Hatch&display=swap');
+
 .navBar {
     width: 80%;
     margin: auto;
@@ -8,7 +9,7 @@
     align-items: center;
     justify-content: space-between;
     text-decoration: none;
-    
+
 }
 
 .navBar ul li {
@@ -19,7 +20,7 @@
     font-family: 'DynaPuff', cursive;
     color: black;
     font-size: 1.5rem;
-    
+
 }
 
 .navBar ul li a {
@@ -30,30 +31,16 @@
     margin-left: 100px;
 }
 
-/* .navBar ul li::before {
-    content: "";
-    height: 3px;
-    width: 0%;
-    background: rgb(48, 48, 47);
-    position: absolute;
-    left: 0;
-    bottom: -12px;
-    transition: 0.4s ease-out;
-} */
-
 .navBar ul li:hover {
     cursor: pointer;
     transform: scale(1.40);
 }
 
 
-.navBar h1{
+.navBar h1 {
     color: rgb(0, 0, 0);
-    /* font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
     font-family: 'Rubik Marker Hatch', cursive;
     font-size: 2rem;
     margin-left: 30px;
-    
     display: flex;
 }
-

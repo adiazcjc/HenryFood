@@ -1,30 +1,26 @@
 import React, { useState, useEffect } from 'react';
-// import { postRecipe, getDiets } from '../actions'
+import { postRecipe, getDiets } from '../actions'
 import { useDispatch, useSelector } from 'react-redux';
-import NavBar from './NavBar';
 import styles from './Form.module.css'
 import { Link } from 'react-router-dom';
 
 
-export default function PokeCreate() {
+export default function RecipeCreate() {
     const dispatch = useDispatch();
-    const allTypes = useSelector((state) => state.pokemonsTypes)
+    const allDiets = useSelector((state) => state.diets)
 
     const [input, setInput] = useState({
         name: "",
-        hp: 0,
-        attack: 0,
-        defense: 0,
-        speed: 0,
-        height: 0,
-        weight: 0,
-        types: [],
-        img: ""
+        img: "",
+        healthScore: 1,
+        summary: "",
+        steps: "",
+        diets: []
     })
 
-    // useEffect(() => {
-    //     dispatch(getDiets())
-    // }, [dispatch])
+    useEffect(() => {
+        dispatch(getDiets())
+    }, [dispatch])
 
     function handleChange(e) {
         setInput({
@@ -36,7 +32,7 @@ export default function PokeCreate() {
     function handleSelect(e) {
         setInput({
             ...input,
-            types: [...input.types, e.target.value]
+            diets: [...input.diets, e.target.value]
         })
     }
 
@@ -45,7 +41,7 @@ export default function PokeCreate() {
         if (!input.name || input.name.length <= 2 || input.name.length > 15) {
             e.preventDefault();
             return alert("Debe ingresar un nombre que contenga entre 2 y 15 caracteres")
-        } else if (!input.types.length) {
+        } else if (!input.diets.length) {
             e.preventDefault();
             return alert('Selecciona al menos un tipo de dieta')
         } else if (input.img.length === 0){
@@ -54,13 +50,13 @@ export default function PokeCreate() {
         }else if(!(/https:\/\/[a-zA-Z./-]+/gm).test(input.img)) {
             e.preventDefault();
             return alert('Debes ingresar una URL válida')
-        } else if(!input.hp || input.hp.length <= 0 || input.hp.length > 100){
+        } else if(!input.healthScore || input.healthScore.length <= 0 || input.healthScore.length > 100){
             e.preventDefault();
             return alert('Debes asignar un nivel de vida entre 1 y 100!')
-        }else if(!input.attack || input.attack.length <= 0 || input.attack.length > 100){
+        }else if(!input.summary || input.summary.length <= 0 || input.summary.length > 100){
             e.preventDefault();
             return alert('Debes asignar un nivel de ataque entre 1 y 100!')
-        }else if(!input.defense || input.defense.length <= 0 || input.defense.length > 100){
+        }else if(!input.steps || input.steps.length <= 0 || input.steps.length > 100){
             e.preventDefault();
             return alert('Debes asignar un nivel de defensa entre 1 y 100!')
         }else if(!input.speed || input.speed.length <= 0 || input.speed.length > 100){
@@ -73,18 +69,15 @@ export default function PokeCreate() {
             e.preventDefault();
             return alert('Debes asignar un peso entre 1 y 100!')
         }
-        dispatch((input))
-        alert("Tu Pokemon ha sido creado con éxito!")
+        dispatch(postRecipe(input))
+        alert("Tu receta ha sido creada con éxito!")
         setInput({
             name: "",
-            hp: 0,
-            attack: 0,
-            defense: 0,
-            speed: 0,
-            height: 0,
-            weight: 0,
-            types: [],
-            img: ""
+            img: "",
+            healthScore: 1,
+            summary: "",
+            steps: "",
+            diets: []
         })
     }
 
@@ -92,10 +85,10 @@ export default function PokeCreate() {
         document.getElementById("miForm").reset();
     }
 
-    let handleDelete = (type) => {
+    let handleDelete = (diet) => {
         setInput({
             ...input,
-            types: input.types.filter(el => el !== type)
+            diets: input.diets.filter(el => el !== diet)
         })
     }
 
@@ -117,9 +110,9 @@ export default function PokeCreate() {
                         <div >
                             <label>Tipos de dietas</label>
                             <select id='8' onChange={(e) => handleSelect(e)} style={{width: '300px', fontSize:'15px', textAlign: 'center'}}>
-                                <option value="" hidden name="types">Elegí los tipos de dietas:</option>
+                                <option value="" hidden name="diets">Elegí los tipos de dietas:</option>
                                 {
-                                    allTypes?.map(el => {
+                                    allDiets?.map(el => {
                                         return (<option value={el.name} key={el.id}>{el.name}</option>)
                                     })
                                 }
@@ -127,10 +120,10 @@ export default function PokeCreate() {
                             <ul style={{ listStyle: 'none' }}>
                                 <li>
                                     {
-                                        input.types.map(el =>
+                                        input.diets.map(el =>
                                             <div>
                                                 <h5>
-                                                    {allTypes?.find(p => p.name === el)?.name}
+                                                    {allDiets?.find(p => p.name === el)?.name}
                                                     <button onClick={() => handleDelete(el)}>x</button>
                                                 </h5>
                                             </div>
@@ -153,18 +146,18 @@ export default function PokeCreate() {
 
                         <div>
                             <label>Nivel de "comida saludable" :</label>
-                            <input type="number" name="hp" onChange={handleChange} style={{ width: '100px', height: '60px', fontSize:'15px', textAlign:'center' }} min="1" max="100"  required />
+                            <input type="number" name="healthScore" onChange={handleChange} style={{ width: '100px', height: '60px', fontSize:'15px', textAlign:'center' }} min="1" max="100"  required />
                         </div>
                         <br />
                         <div>
                             <label>Resumen del plato:</label>
-                            <input type="text" name="attack" onChange={handleChange} style={{ width: '300px', height: '100px', fontSize:'15px', textAlign: 'left' }} min="1" max="100"  />
+                            <input type="text" name="summary" onChange={handleChange} style={{ width: '300px', height: '100px', fontSize:'15px', textAlign: 'left' }} min="1" max="100"  />
                             
                         </div>
                         <br />
                         <div>
                             <label>Paso a paso:</label>
-                            <input type="text" name="defense" onChange={handleChange} style={{ width: '300px', height: '150px', fontSize:'15px' }} min="1" max="100" required/>
+                            <input type="text" name="steps" onChange={handleChange} style={{ width: '300px', height: '150px', fontSize:'15px' }} min="1" max="100" required/>
   
                         </div>
                     </div>

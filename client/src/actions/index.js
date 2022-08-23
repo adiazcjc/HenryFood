@@ -49,6 +49,23 @@ export function getDetails(id) {
     }
 }
 
+export function postRecipe(payload) {
+    return async function (dispatch) {
+        const recipeCreated = await axios.post("http://localhost:3001/recipes", payload)
+        return recipeCreated
+    }
+}
+
+export function getDiets() {
+    return async (dispatch) => {
+        var diets = await axios.get('http://localhost:3001/diets')
+        return dispatch({
+            type: "GET_TYPES",
+            payload: diets.data
+        })
+    }
+}
+
 export function filterDiet(payload) {
     return {
         type: 'FILTER_DIETS',

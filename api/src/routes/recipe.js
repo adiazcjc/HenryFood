@@ -8,13 +8,6 @@ const router = Router()
 
 router.get('/recipes', async (req, res) => {
 
-    // try{
-    //     let recetas= await getAllRecipes()
-    //     res.status(200).send(recetas)
-    // }catch(err){
-    //     res.status(404).send('ERROR DE AXIOS')
-    // }
-
     const {name} = req.query;
     try{
         let allRecipes = await getAllRecipes();
@@ -34,23 +27,6 @@ router.get('/recipes', async (req, res) => {
 
 router.get('/recipes/:idRecipe', async (req, res) => {
    
-    // const {idReceta} = req.params
-    // let allRecipes = await getAllRecipes()
-
-    // if(idReceta) {
-    //     const receta = await allRecipes.filter(lpm => lpm.id == idReceta || lpm.apiId == idReceta)
-    //     //const receta = await allRecipes.filter(lpm => lpm.id == idReceta || lpm.apiId == idReceta)
-    //     if(receta.length > 0) {
-    //         res.status(200).json(receta)
-    //     }
-    //     else{
-    //         res.status(404).send("Perdon Rey no hay nada, pero tu tranqui, intentalo de nuevo")
-    //     }
-    // }
-    // else{
-    //     res.status(200).send(allRecipes)
-    // }
-   
     try {
         const {idRecipe} = req.params;
         let allRecipes = await getAllRecipes()
@@ -68,80 +44,30 @@ router.get('/recipes/:idRecipe', async (req, res) => {
 
 //RUTA PARA CREAR RECETAS
 
-// router.post('/recipes', async (req, res) => {
-
-//     let { title, summary, healthScore, steps, img, diets } = req.body;
-//     try {
-//         let newRecipe = await Recipe.create({
-//             title,
-//             summary,
-//             healthScore,
-//             steps,
-//             img
-//         })
-
-//         let dbDiets = await Diet.findAll({
-//             where: { name: diets }
-//         })
-//         newRecipe.addDiet(dbDiets)
-//         res.status(201).json(newRecipe)
-//     } catch (e) {
-//         console.log(e)
-//         res.status(404).send(e)
-//     }
-// })
 
 router.post("/recipes", async (req, res) => {
-    const { name, image, diets, dishTypes, healthScore, steps, summary,
-      } = req.body;
+    let { name, image, diets, dishTypes, healthScore, steps, summary } = req.body;
     
       try {
-        const newRecipe = await Recipe.create({
+        let newRecipe = await Recipe.create({
           name,
           image,
           dishTypes,
           healthScore,
           steps,
-          summary,
+          summary
         });
-        console.log(req.body)
-        const dbDiets = await Diet.findAll({
+        let dbDiets = await Diet.findAll({
           where: { name: diets },
         });
-    
-        await newRecipe.addDiet(dbDiets);
-    
+        newRecipe.addDiet(dbDiets);
         res.status(201).send("Receta creada exitosamente");
       } catch (err) {
-        // res.status(404).send(err)
+        res.status(404).send(err)
+        console.log(err)
         
       }
   });
 
 
-
-
-
-//RUTA PARA MOSTRAR LOS POKEMONES CREADOS
-
-// router.get('/creados', async (req, res) => {
-//     try {
-//         let creados = await getDbInfo()
-//         res.status(200).json(creados)
-//     } catch (err) {
-//         res.status(400).send(err)
-//     }
-// })
-
-// router.delete('/:id', async (req, res) => {
-//     try{
-//         let {id} = req.params
-//         await Recipe.destroy({
-//             where: {id}
-//         })
-//         res.status(201).send('PERRITO ELIMINADO')
-//     }catch(err){
-//         res.status(400).json(err.message)
-//     }
-// })
 module.exports = router;

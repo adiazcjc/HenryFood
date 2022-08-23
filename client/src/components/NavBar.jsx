@@ -11,9 +11,6 @@ export default function NavBar() {
         <h1>#HenryFood</h1>
         <div>
           <ul>
-            {/* <Link to='./home'>
-              <li><a href='/home'></a>Home</li>
-            </Link> */}
             <Link to='/recipes'>
               <li><a href="/recipes"></a>Crear Receta</li>
             </Link>
