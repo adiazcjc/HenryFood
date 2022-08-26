@@ -7,7 +7,8 @@ import { Link } from 'react-router-dom';
 
 export default function RecipeCreate() {
     const dispatch = useDispatch();
-    const allDiets = useSelector((state) => state.diets)
+    const diets = useSelector((state) => state.diets)
+    console.log(diets)
 
     const [input, setInput] = useState({
         name: "",
@@ -40,7 +41,7 @@ export default function RecipeCreate() {
       
         if (!input.name || input.name.length <= 2 || input.name.length > 15) {
             e.preventDefault();
-            return alert("Debe ingresar un nombre que contenga entre 2 y 15 caracteres")
+            return alert("Debe ingresar un nombre que contenga entre 2 y 50 caracteres")
         } else if (!input.diets.length) {
             e.preventDefault();
             return alert('Selecciona al menos un tipo de dieta')
@@ -50,24 +51,15 @@ export default function RecipeCreate() {
         }else if(!(/https:\/\/[a-zA-Z./-]+/gm).test(input.img)) {
             e.preventDefault();
             return alert('Debes ingresar una URL válida')
-        } else if(!input.healthScore || input.healthScore.length <= 0 || input.healthScore.length > 100){
+        } else if(!input.healthScore || input.healthScore.length <= 0 || input.healthScore.length > 10){
             e.preventDefault();
-            return alert('Debes asignar un nivel de vida entre 1 y 100!')
+            return alert('Debes asignar un nivel de Health Score entre 1 y 10!')
         }else if(!input.summary || input.summary.length <= 0 || input.summary.length > 100){
             e.preventDefault();
-            return alert('Debes asignar un nivel de ataque entre 1 y 100!')
+            return alert('El resumen del plato debe contener al menos 20 caracteres!')
         }else if(!input.steps || input.steps.length <= 0 || input.steps.length > 100){
             e.preventDefault();
-            return alert('Debes asignar un nivel de defensa entre 1 y 100!')
-        }else if(!input.speed || input.speed.length <= 0 || input.speed.length > 100){
-            e.preventDefault();
-            return alert('Debes asignar un nivel de velocidad entre 1 y 100!')
-        }else if(!input.height || input.height.length <= 0 || input.height.length > 100){
-            e.preventDefault();
-            return alert('Debes asignar una altura entre 1 y 100!')
-        }else if(!input.weight || input.weight.length <= 0 || input.weight.length > 100){
-            e.preventDefault();
-            return alert('Debes asignar un peso entre 1 y 100!')
+            return alert('El tipo de plato debe contener al menos 10 caracteres!')
         }
         dispatch(postRecipe(input))
         alert("Tu receta ha sido creada con éxito!")
@@ -106,16 +98,19 @@ export default function RecipeCreate() {
                             <label>Nombre:</label>
                             <input type="text" maxlength="15" id='7' value={input.name} name="name" placeholder='Nombre de tu receta' onChange={(e) => handleChange(e)} style={{width: '300px', fontSize:'15px', textAlign:'center' }}  />
                         </div>
-
+                        
                         <div >
                             <label>Tipos de dietas</label>
                             <select id='8' onChange={(e) => handleSelect(e)} style={{width: '300px', fontSize:'15px', textAlign: 'center'}}>
+                                {console.log(diets)}
                                 <option value="" hidden name="diets">Elegí los tipos de dietas:</option>
                                 {
-                                    allDiets?.map(el => {
+                                    diets?.map(el => {
                                         return (<option value={el.name} key={el.id}>{el.name}</option>)
+                                        
                                     })
                                 }
+                                 
                             </select>
                             <ul style={{ listStyle: 'none' }}>
                                 <li>
@@ -123,7 +118,7 @@ export default function RecipeCreate() {
                                         input.diets.map(el =>
                                             <div>
                                                 <h5>
-                                                    {allDiets?.find(p => p.name === el)?.name}
+                                                    {diets?.find(p => p.name === el)?.name}
                                                     <button onClick={() => handleDelete(el)}>x</button>
                                                 </h5>
                                             </div>

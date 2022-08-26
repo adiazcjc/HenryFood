@@ -14,7 +14,7 @@ export default  function Cards({id, name, image, diets}) {
                 
                 
                     <div className={styles.back}>
-                        <h3>Diets: {diets.map(el=>{return el + " - "})}</h3>
+                        <h3>Diets: {diets.map(el=>{return el.name + " - "})}</h3>
                     </div>
                      
                 

@@ -57,14 +57,16 @@ export function postRecipe(payload) {
 }
 
 export function getDiets() {
-    return async (dispatch) => {
-        var diets = await axios.get('http://localhost:3001/diets')
-        return dispatch({
-            type: "GET_TYPES",
-            payload: diets.data
-        })
+    return async function (dispatch) {
+      var json = await axios.get("http://localhost:3001/diets");
+      return dispatch({
+        type: 'GET_DIETS',
+        payload: json.data,
+      })
     }
-}
+  }
+
+
 
 export function filterDiet(payload) {
     return {
@@ -100,3 +102,8 @@ export function filterCreatedOrApi(payload) {
     }
 }
 
+export function getClean(){
+    return{
+      type: 'GET_CLEAN',
+    }
+  }

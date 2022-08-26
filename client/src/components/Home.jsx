@@ -11,7 +11,11 @@ import styles from './Home.module.css'
 
 export default function Home() {
     const dispatch = useDispatch()
+    
     const allRecipes = useSelector((state) => state.recipes)
+    const allDiets = useSelector((state) => state.dietsTypes)
+    let detailRecipe = useSelector(state=> state.detail)
+
     const [currentPage, setCurrentPage] = useState(1)
     const [order, setOrder] = useState("")
     const [recipesForPage, setRecipesForPage] = useState(9)

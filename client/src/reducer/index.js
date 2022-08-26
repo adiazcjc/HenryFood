@@ -18,6 +18,11 @@ function rootReducer(state = initialState, action) {
                 ...state,
                 recipes: action.payload
             }
+        case 'GET_DIETS':
+            return {
+                ...state,
+                diets: action.payload
+            }
 
         case 'ORDER_NAME':
             let all = state.recipes
@@ -68,14 +73,25 @@ function rootReducer(state = initialState, action) {
                 recipes: arrayRecipes.length ? arrayRecipes : reciReci.concat(alert("Aún no existen Recetas creados"))
             }
         case 'FILTER_DIETS':
-            const myRecipes = [...state.allRecipes];
-            const filterDiet = action.payload === 'All' ? myRecipes :
-                myRecipes.filter((el) => el.diets.includes(action.payload));
-            const noDiet = myRecipes
-            return {
+            // const myRecipes = [...state.allRecipes];
+            // const filterDiet = action.payload === 'All' ? myRecipes :
+            //     myRecipes.filter((el) => el.diets.includes(action.payload));
+            // const noDiet = myRecipes
+            // return {
+            //     ...state,
+            //     recipes: filterDiet.length ? filterDiet : noDiet.concat(alert("Aún no existen recetas con esa dieta"))
+            // }
+            const allRecipes= state.allRecipes 
+            const dietsFilter = action.payload === "All" ? state.allRecipes :
+             allRecipes.filter(recipe => recipe.diets.find(diet => { 
+            if (diet.name === action.payload) {
+             return recipe
+              }   
+            }))
+             return{
                 ...state,
-                recipes: filterDiet.length ? filterDiet : noDiet.concat(alert("Aún no existen recetas con esa dieta"))
-            }
+                recipes: dietsFilter
+            } 
         case 'GET_DETAILS':
             return {
                 ...state,
@@ -85,6 +101,11 @@ function rootReducer(state = initialState, action) {
             return {
                 ...state,
             }
+        case 'GET_CLEAN':
+        return{
+            ...state,
+            datail: []
+        }    
         default:
             return state;
     }
