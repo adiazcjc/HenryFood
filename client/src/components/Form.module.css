@@ -162,15 +162,17 @@
 
 }
 
- .title {
+ .title h1 {
     list-style: none;
     font-family: 'DynaPuff', cursive;
     color: rgb(0, 0, 0);
     font-size: 3rem;
     padding: 1%;
     outline: none;
+    box-shadow: none;
+    width: 100%;
 }
-.title:hover {
+.title h1:hover {
     cursor: pointer;
     transform: scale(1.20);
 }

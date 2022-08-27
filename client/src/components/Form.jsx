@@ -13,7 +13,7 @@ export default function RecipeCreate() {
     const [input, setInput] = useState({
         name: "",
         image: "",
-        healthScore: 1,
+        healthScore: 0,
         summary: "",
         steps: "",
         diets: []
@@ -54,10 +54,10 @@ export default function RecipeCreate() {
         } else if(!input.healthScore || input.healthScore.length <= 0 || input.healthScore.length >= 100){
             e.preventDefault();
             return alert('Debes asignar un nivel de Health Score entre 1 y 100!')
-        }else if(!input.summary || input.summary.length <= 0 && input.summary.length < 20){
+        }else if(!input.summary || input.summary.length <= 0 || input.summary.length < 20){
             e.preventDefault();
             return alert('El resumen del plato debe contener al menos 20 caracteres!')
-        }else if(!input.steps || input.steps.length <= 0 && input.steps.length < 20){
+        }else if(!input.steps || input.steps.length <= 0 || input.steps.length < 20){
             e.preventDefault();
             return alert('El campo del paso a paso debe contener al menos 20 caracteres!')
         }
@@ -66,7 +66,7 @@ export default function RecipeCreate() {
         setInput({
             name: "",
             image: "",
-            healthScore: 1,
+            healthScore: 0,
             summary: "",
             steps: "",
             diets: []
@@ -78,7 +78,7 @@ export default function RecipeCreate() {
         setInput({
             name: "",
             image: "",
-            healthScore: 1,
+            healthScore: 0,
             summary: "",
             steps: "",
             diets: []
@@ -95,8 +95,8 @@ export default function RecipeCreate() {
     return (
         <div className={styles.container}>
             <div className={styles.title}>
-            <Link to='/home' style={{ textDecoration: 'none' }}>
-                <li><a href="/home"></a>#HenryFood</li>
+            <Link to='/home' style={{ textDecoration: 'none', boxShadow: 'none' }}>
+                <h1>#HenryFood</h1>
             </Link>
             </div>
             <div className={styles.cards}>

@@ -8,16 +8,14 @@ import styles from "./Details.module.css"
 
 
 export default function Detail() {
+   const myRecipe = useSelector(state => state.detail)
    const dispatch = useDispatch()
    const { id } = useParams()
 
-
    useEffect(() => {
       dispatch(getDetails(id))
-      return () => { dispatch(getClean()) }
-   }, [dispatch, id])
+  }, [dispatch])
 
-   const myRecipe = useSelector(state => state.detail)
 
    return (
       <div  className={styles.container}>

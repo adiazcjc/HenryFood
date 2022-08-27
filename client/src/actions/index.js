@@ -7,6 +7,7 @@ export const FILTER_CREATED = "FILTER_CREATED";
 export const FILTER_DB_OR_API = "FILTER_DB_OR_API";
 export const ORDER_NAME = "ORDER_NAME";
 export const ORDER_SCORE = "ORDER_SCORE";
+export const GET_CLEAN = "BORRAR_DETAIL";
 
 
 export function getRecipes(){
@@ -104,6 +105,6 @@ export function filterCreatedOrApi(payload) {
 
 export function getClean(){
     return{
-      type: 'GET_CLEAN',
+      type: GET_CLEAN,
     }
   }

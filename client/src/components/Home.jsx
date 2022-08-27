@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { getRecipes, getDiets, filterDiet, orderForName, filterCreatedOrApi, orderForScore, getClean } from '../actions';
+import { getRecipes, getClean, filterDiet, orderForName, filterCreatedOrApi, orderForScore } from '../actions';
 import { Link } from 'react-router-dom'
 import Cards from "./Cards";
 import Paginated from "./Paginated";
@@ -36,14 +36,13 @@ export default function Home() {
         setCurrentPage(numPage)
     }
 
-    // useEffect(() => {
-    //     dispatch(getRecipes())
-    // }, [dispatch])
-
     useEffect(() => {
         dispatch(getRecipes())
-        return () => { dispatch(getClean()) }
-     }, [dispatch])
+    }, [dispatch])
+
+    useEffect(() => {
+        dispatch(getClean())
+    }, [dispatch])
 
 
     function handleClick(e) {

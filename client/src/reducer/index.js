@@ -1,3 +1,7 @@
+import {
+    GET_CLEAN
+  } from "../actions/";
+
 const initialState = {
     recipes: [],
     allRecipes: [],
@@ -60,9 +64,9 @@ function rootReducer(state = initialState, action) {
         case 'FILTER_DB_OR_API':
 
             let arrayRecipes = []
-            const reciReci = state.recipes
+            const reciReci = state.allRecipes
             if (action.payload === 'recipes') {
-                arrayRecipes = state.recipes
+                arrayRecipes = state.allRecipes
             } else if (action.payload === 'data_base') {
                 arrayRecipes = reciReci.filter(p => p.createForMe)
             } else if (action.payload === 'api') {
@@ -73,17 +77,15 @@ function rootReducer(state = initialState, action) {
                 recipes: arrayRecipes.length ? arrayRecipes : reciReci.concat(alert("Aún no existen Recetas creados"))
             }
         case 'FILTER_DIETS':
-            const allRecipes= state.allRecipes 
-            const dietsFilter = action.payload === "All" ? state.allRecipes :
-             allRecipes.filter(recipe => recipe.diets.find(diet => { 
-            if (diet.name === action.payload) {
-             return recipe
-              }   
-            }))
-             return{
+            const allRecipes = state.allRecipes;
+            const dietsFilter = action.payload === 'All' ? allRecipes :
+            allRecipes.filter(el => el.diets.map(el => el.name).includes(action.payload))
+            const noDiet = allRecipes
+            return {
                 ...state,
-                recipes: dietsFilter
-            } 
+                recipes: dietsFilter.length ? dietsFilter : noDiet.concat(alert("Aún no existen recetas con ese tipo de dieta"))
+            }
+
         case 'GET_DETAILS':
             return {
                 ...state,
@@ -93,10 +95,10 @@ function rootReducer(state = initialState, action) {
             return {
                 ...state,
             }
-        case 'GET_CLEAN':
+        case GET_CLEAN:
         return{
             ...state,
-            datail: []
+            datail: {}
         }    
         default:
             return state;
