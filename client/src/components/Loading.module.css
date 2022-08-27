@@ -30,3 +30,17 @@
     margin-left: -350px;
     color: rgb(0, 0, 0);
   }
+
+  .loading .wave {
+    height: 100%;
+    width: 100%;
+    background: #FFEFBA; 
+  background: -webkit-linear-gradient(to left, #FFFFFF, #FFEFBA);  
+  background: linear-gradient(to left, #FFFFFF, #FFEFBA); 
+    
+}
+
+.wave path {
+    stroke: none;
+    fill: #fff
+}

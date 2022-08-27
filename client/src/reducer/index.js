@@ -64,23 +64,15 @@ function rootReducer(state = initialState, action) {
             if (action.payload === 'recipes') {
                 arrayRecipes = state.recipes
             } else if (action.payload === 'data_base') {
-                arrayRecipes = reciReci.filter(p => p.createdInDb)
+                arrayRecipes = reciReci.filter(p => p.createForMe)
             } else if (action.payload === 'api') {
-                arrayRecipes = reciReci.filter(p => !p.createdInDb)
+                arrayRecipes = reciReci.filter(p => !p.createForMe)
             }
             return {
                 ...state,
                 recipes: arrayRecipes.length ? arrayRecipes : reciReci.concat(alert("Aún no existen Recetas creados"))
             }
         case 'FILTER_DIETS':
-            // const myRecipes = [...state.allRecipes];
-            // const filterDiet = action.payload === 'All' ? myRecipes :
-            //     myRecipes.filter((el) => el.diets.includes(action.payload));
-            // const noDiet = myRecipes
-            // return {
-            //     ...state,
-            //     recipes: filterDiet.length ? filterDiet : noDiet.concat(alert("Aún no existen recetas con esa dieta"))
-            // }
             const allRecipes= state.allRecipes 
             const dietsFilter = action.payload === "All" ? state.allRecipes :
              allRecipes.filter(recipe => recipe.diets.find(diet => { 

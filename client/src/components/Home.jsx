@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { getRecipes,filterDiet, orderForName, filterCreatedOrApi, orderForScore } from '../actions';
+import { getRecipes, getDiets, filterDiet, orderForName, filterCreatedOrApi, orderForScore, getClean } from '../actions';
 import { Link } from 'react-router-dom'
 import Cards from "./Cards";
 import Paginated from "./Paginated";
@@ -36,9 +36,15 @@ export default function Home() {
         setCurrentPage(numPage)
     }
 
+    // useEffect(() => {
+    //     dispatch(getRecipes())
+    // }, [dispatch])
+
     useEffect(() => {
         dispatch(getRecipes())
-    }, [dispatch])
+        return () => { dispatch(getClean()) }
+     }, [dispatch])
+
 
     function handleClick(e) {
         e.preventDefault();
@@ -111,10 +117,10 @@ export default function Home() {
 
                         <select className={styles.filter} onChange={e => handleFilterDiet(e)}>
                         <option value="All">Filtrar por dietas </option>
-                        <option value="Vegan"> Vegan </option>
-                        <option value="Dairy free"> Dairy free </option>
-                        <option value="Lacto ovo vegetarian"> Lacto ovo vegetarian </option>
-                        <option value="Lacto-Vegetarian"> Lacto-Vegetarian </option>
+                        <option value="vegan"> Vegan </option>
+                        <option value="dairy free"> Dairy free </option>
+                        <option value="lacto ovo vegetarian"> Lacto ovo vegetarian </option>
+                        <option value="lacto-Vegetarian"> Lacto-Vegetarian </option>
                         <option value="pescatarian"> Pescatarian </option>
                         <option value="primal"> Primal </option>
                         <option value="paleolithic"> Paleolithic </option>

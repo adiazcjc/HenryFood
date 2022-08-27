@@ -1,6 +1,6 @@
 require('dotenv').config();
 const axios = require('axios');
-const APIKEY = process.env.APIKEY1
+const APIKEY = process.env.APIKEY5
 const {Recipe,Diet} = require('../db');
 
 const getApi = async () => {
@@ -13,7 +13,6 @@ const getApi = async () => {
             summary: el.summary,
             healthScore: el.healthScore,
             image: el.image,
-            //diets: el.diets,
             diets: el.diets.map((d) => { return { name: d } }),
             dishTypes: el.dishTypes,
             steps: el.analyzedInstructions

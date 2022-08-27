@@ -9,57 +9,75 @@
     background: #FFEFBA;
     background: -webkit-linear-gradient(to left, #FFFFFF, #FFEFBA);
     background: linear-gradient(to left, #FFFFFF, #FFEFBA);
-
+    
 }
 
+.box .blockOne{
+    column-count: 2;
+}
 
-.container .card {
-    width: 320px;
-    height: 450px;
+.box .card1 {
+    width: auto;
+    height: 100%;
     margin: 50px;
-    border: 3px solid rgb(167, 166, 166);
+    text-align: center;
+    align-items: center;
+    border-radius: 20px;
+    box-shadow: 0 5px 10px #000;
+    align-items: center;
+    padding: 1%;
+    line-height: 2;
+    font-family: 'DynaPuff', cursive;
+}
+.box .card {
+    width: auto;
+    height: 100%;
+    margin: 50px;
+    text-align: justify;
+    align-items: center;
+    border-radius: 20px;
+    box-shadow: 0 5px 10px #000;
+    align-items: center;
+    padding: 1%;
+    line-height: 2;
+    font-family: 'DynaPuff', cursive;
+    outline: none;
+    text-decoration: none;
+}
+
+.box .card h2{
+    text-align: center;
+}
+
+.box img {
+    width: 350px;
+    height: 350px;
+    border-radius: 20%;
+    box-shadow: 0 5px 10px #000;
+    align-items: center;
+}
+
+.box .card2 {
+    width: 90%;
+    height: 100%;
     text-align: center;
     align-items: center;
     justify-content: center;
-    display: inline-block;
-}
+    box-shadow: 0 2px 20px #000;
+    border-radius: 10px;
+    padding: 5%;
+    margin-top: 5%;
 
-.card img {
-    width: 350px;
-    height: 350px;
-    display: flex;
 }
-
-.container h1 {
+.box h1 {
     color: rgb(0, 0, 0);
     font-family: 'DynaPuff', cursive;
     font-size: 40px;
     text-align: center;
-    padding: 2%;
+    padding: 1%;
 }
 
-.container h2 {
-    color: rgb(0, 0, 0);
-    font-family: 'DynaPuff', cursive;
-    font-size: 20px;
-    text-align: left;
-    display: flex;
-    margin-left: 5%;
-}
-
-.container ul {
-    color: rgb(0, 0, 0);
-    font-family: 'DynaPuff', cursive;
-    font-size: 15px;
-    text-align: left;
-    margin-left: 5%;
-}
-
-.container .recipe {
-    background-image: '../images/nota.png';
-}
-
-.container button {
+.box button {
     cursor: pointer;
     border: 3px solid rgb(167, 166, 166);
     border-radius: 15px;
@@ -69,14 +87,14 @@
     background-color: rgb(255, 255, 255);
     font-family: 'DynaPuff', cursive;
     font-size: 1.5rem;
-    display: flex;
     align-items: center;
     justify-content: center;
     text-decoration: none;
     text-align: center;
 }
 
-.container button:hover {
+.box button:hover {
     cursor: pointer;
     transform: scale(1.40);
+    outline: none;
 }
