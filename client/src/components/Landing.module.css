@@ -1,32 +1,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Kavoon&display=swap');
 
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-   
 }
 
-.container{
-    
+.container {
     justify-content: space-around;
     width: 100%;
     max-width: 1400px;
-    position:absolute;
-    height:auto;
+    position: absolute;
+    height: auto;
 }
 
-.page{
+.page {
     font-family: 'Open Sans', sans-serif;
-    
     padding: 48px;
     width: 100%;
     display: flex;
     align-items: center;
-    margin:auto;
-    background: #ffffff;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to left, #FFFFFF, #FFEFBA);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to left, #FFFFFF, #FFEFBA); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    margin: auto;
+    background: #ffffff;
+    background: -webkit-linear-gradient(to left, #FFFFFF, #FFEFBA);
+    background: linear-gradient(to left, #FFFFFF, #FFEFBA);
 }
 
 .page img {
@@ -38,24 +35,24 @@
     margin-left: 7%;
 }
 
-.page .texts{
+.page .texts {
     width: 50%;
     color: rgb(0, 0, 0);
     font-family: 'Kavoon', cursive;
 }
 
-.page .texts h1{
+.page .texts h1 {
     font-family: 'Kavoon', cursive;
     font-size: 90px;
     animation: moverIzquierda 1s ease-in;
 }
 
-.page .texts h2{
+.page .texts h2 {
     font-size: 30px;
     animation: moverIzquierda 1s ease-in;
 }
 
-.page .texts a{
+.page .texts a {
     display: inline-block;
     color: rgb(1, 1, 1);
     font-weight: 300;
@@ -72,10 +69,10 @@
 .container .wave {
     height: 100%;
     width: 100%;
-    background: #FFEFBA; 
-  background: -webkit-linear-gradient(to left, #FFFFFF, #FFEFBA);  
-  background: linear-gradient(to left, #FFFFFF, #FFEFBA); 
-    
+    background: #FFEFBA;
+    background: -webkit-linear-gradient(to left, #FFFFFF, #FFEFBA);
+    background: linear-gradient(to left, #FFFFFF, #FFEFBA);
+
 }
 
 .wave path {
@@ -83,37 +80,37 @@
     fill: #fff
 }
 
-@keyframes moverArriba{
-    0%{
+@keyframes moverArriba {
+    0% {
         opacity: 0;
         transform: translateY(100px);
     }
 
-    100%{
+    100% {
         opacity: 1;
         transform: translate(0);
     }
 }
 
-@keyframes moverIzquierda{
-    0%{
+@keyframes moverIzquierda {
+    0% {
         opacity: 0;
         transform: translateX(-100px);
     }
 
-    100%{
+    100% {
         opacity: 1;
         transform: translate(0);
     }
 }
 
-@keyframes moverDerecha{
-    0%{
+@keyframes moverDerecha {
+    0% {
         opacity: 0;
         transform: translateX(100px);
     }
 
-    100%{
+    100% {
         opacity: 1;
         transform: translate(0);
     }

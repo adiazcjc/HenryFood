@@ -1,6 +1,4 @@
-import {
-    GET_CLEAN
-  } from "../actions/";
+
 
 const initialState = {
     recipes: [],
@@ -95,7 +93,7 @@ function rootReducer(state = initialState, action) {
             return {
                 ...state,
             }
-        case GET_CLEAN:
+        case 'GET_CLEAN':
         return{
             ...state,
             datail: {}

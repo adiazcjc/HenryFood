@@ -1,13 +1,15 @@
 require('dotenv').config();
 const axios = require('axios');
-const APIKEY = process.env.APIKEY7
-const {Recipe,Diet} = require('../db');
+const APIKEY = process.env.APIKEY5
+const { Recipe, Diet } = require('../db');
+
+//FUNCION PARA TRAER LAS RECETAS DE LA API
 
 const getApi = async () => {
 
     const listRecipes = (await axios.get(`https://api.spoonacular.com/recipes/complexSearch?number=100&addRecipeInformation=true&apiKey=${APIKEY}`)).data;
     const dataRecipes = await listRecipes.results.map((el) => {
-      return {
+        return {
             id: el.id,
             name: el.title,
             summary: el.summary,
@@ -16,23 +18,27 @@ const getApi = async () => {
             diets: el.diets.map((d) => { return { name: d } }),
             dishTypes: el.dishTypes,
             steps: el.analyzedInstructions
-            .map((el) => {
-              return el.steps.map((el) => {
-                return el.step;
-              });
-            })
-            .flat(),
+                .map((el) => {
+                    return el.steps.map((el) => {
+                        return el.step;
+                    });
+                })
+                .flat(),
             db: false
         };
     });
     return dataRecipes;
 }
 
+//FUNCION PARA TRAER LAS RECETAS DE LA BD
+
 const getDataBase = async () => {
     return await Recipe.findAll({
         include: Diet,
     });
 };
+
+//FUNCION PARA TRAER TODAS LAS RECETAS (API Y BD)
 
 const getAllRecipes = async () => {
     const api = await getApi();
@@ -41,30 +47,34 @@ const getAllRecipes = async () => {
     return allRecipes;
 };
 
+//FUNCION PARA BUSCAR POR ID EN LA API
+
 const searchInApi = async (id) => {
     try {
         const recipeId = await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${APIKEY}`)
         const details = await recipeId.data.results;
         return {
-                id: details.id,
-                image: details.image,
-                name: details.title,
-                dishTypes: details.dishTypes,
-                diets: details.diets,
-                summary: details.summary,
-                healthScore: details.healthScore,
-                steps: details.analyzedInstructions
+            id: details.id,
+            image: details.image,
+            name: details.title,
+            dishTypes: details.dishTypes,
+            diets: details.diets,
+            summary: details.summary,
+            healthScore: details.healthScore,
+            steps: details.analyzedInstructions
                 .map((details) => {
-              return details.steps.map((el) => {
-                return details.step;
-              });
-            })
-            .flat(),
+                    return details.steps.map((el) => {
+                        return details.step;
+                    });
+                })
+                .flat(),
         };
     } catch (e) {
         console.log(e);
     };
 };
+
+//FUNCION PARA BUSCAR POR ID EN LA BD
 
 const searchInDataBase = async (id) => {
     try {
@@ -82,6 +92,8 @@ const searchInDataBase = async (id) => {
         return undefined;
     };
 };
+
+//FUNCION PARA BUSCAR POR ID (EN LA API Y BD) -- USO EN DETAILS
 
 const idSearch = async (id) => {
     const api = searchInApi(id);

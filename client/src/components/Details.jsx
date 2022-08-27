@@ -12,10 +12,16 @@ export default function Detail() {
    const dispatch = useDispatch()
    const { id } = useParams()
 
-   useEffect(() => {
-      dispatch(getDetails(id))
-  }, [dispatch])
+//    useEffect(() => {
+//       dispatch(getDetails(id))
+//   }, [dispatch])
 
+useEffect(() => {
+   dispatch(getDetails(id));
+   return () => {
+     dispatch(getClean());
+   };
+ }, [dispatch, id]);
 
    return (
       <div  className={styles.container}>

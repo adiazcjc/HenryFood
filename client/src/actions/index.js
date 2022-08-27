@@ -1,14 +1,4 @@
 import axios from 'axios'
-export const GET_RECIPES = "GET_RECIPES";
-export const SEARCH_NAME = "SEARCH_NAME";
-export const GET_DETAILS = "GET_DETAILS";
-export const FILTER_DIETS = "FILTER_DIETS";
-export const FILTER_CREATED = "FILTER_CREATED";
-export const FILTER_DB_OR_API = "FILTER_DB_OR_API";
-export const ORDER_NAME = "ORDER_NAME";
-export const ORDER_SCORE = "ORDER_SCORE";
-export const GET_CLEAN = "BORRAR_DETAIL";
-
 
 export function getRecipes(){
     return async function(dispatch){
@@ -67,8 +57,6 @@ export function getDiets() {
     }
   }
 
-
-
 export function filterDiet(payload) {
     return {
         type: 'FILTER_DIETS',
@@ -105,6 +93,6 @@ export function filterCreatedOrApi(payload) {
 
 export function getClean(){
     return{
-      type: GET_CLEAN,
+      type: 'GET_CLEAN',
     }
   }

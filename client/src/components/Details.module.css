@@ -2,17 +2,15 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
 
-
 .container {
     width: 100%;
     height: 100%;
     background: #FFEFBA;
     background: -webkit-linear-gradient(to left, #FFFFFF, #FFEFBA);
     background: linear-gradient(to left, #FFFFFF, #FFEFBA);
-    
 }
 
-.box .blockOne{
+.box .blockOne {
     column-count: 2;
 }
 
@@ -29,6 +27,7 @@
     line-height: 2;
     font-family: 'DynaPuff', cursive;
 }
+
 .box .card {
     width: auto;
     height: 100%;
@@ -45,7 +44,7 @@
     text-decoration: none;
 }
 
-.box .card h2{
+.box .card h2 {
     text-align: center;
 }
 
@@ -69,6 +68,7 @@
     margin-top: 5%;
 
 }
+
 .box h1 {
     color: rgb(0, 0, 0);
     font-family: 'DynaPuff', cursive;

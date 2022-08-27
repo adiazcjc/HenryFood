@@ -1,46 +1,43 @@
 @import url('https://fonts.googleapis.com/css2?family=DynaPuff&family=Open+Sans:wght@300;400;700;800&family=Rubik+Marker+Hatch&display=swap');
 
+.loading {
+  height: 675px;
+  width: 100%;
+  display: flex;
+}
 
+.loading img {
+  height: 400px;
+  width: 500px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  display: flex;
+  margin-top: 70px;
+  margin-left: 450px;
+}
 
-.loading{
-    height: 675px;
-    width: 100%;
-    display: flex;
-  } 
+.loading h1 {
+  font-family: 'Rubik Marker Hatch', cursive;
+  font-size: 2rem;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  margin-top: 290px;
+  margin-left: -350px;
+  color: rgb(0, 0, 0);
+}
 
-  .loading img{
-    height: 400px;
-    width: 500px;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    display: flex;
-    margin-top: 70px;
-    margin-left: 450px;
-  }
-
-  .loading h1{
-    font-family: 'Rubik Marker Hatch', cursive;
-    font-size: 2rem;
-    display: flex;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    margin-top: 290px;
-    margin-left: -350px;
-    color: rgb(0, 0, 0);
-  }
-
-  .loading .wave {
-    height: 100%;
-    width: 100%;
-    background: #FFEFBA; 
-  background: -webkit-linear-gradient(to left, #FFFFFF, #FFEFBA);  
-  background: linear-gradient(to left, #FFFFFF, #FFEFBA); 
-    
+.loading .wave {
+  height: 100%;
+  width: 100%;
+  background: #FFEFBA;
+  background: -webkit-linear-gradient(to left, #FFFFFF, #FFEFBA);
+  background: linear-gradient(to left, #FFFFFF, #FFEFBA);
 }
 
 .wave path {
-    stroke: none;
-    fill: #fff
+  stroke: none;
+  fill: #fff
 }

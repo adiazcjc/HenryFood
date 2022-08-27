@@ -10,11 +10,11 @@ import NavBar from "./NavBar"
 import styles from './Home.module.css'
 
 export default function Home() {
+
     const dispatch = useDispatch()
-    
+
     const allRecipes = useSelector((state) => state.recipes)
     const allDiets = useSelector((state) => state.dietsTypes)
-    let detailRecipe = useSelector(state=> state.detail)
 
     const [currentPage, setCurrentPage] = useState(1)
     const [order, setOrder] = useState("")
@@ -76,33 +76,29 @@ export default function Home() {
         setOrder(`Ordenado ${e.target.value}`)
     }
 
-
     const handleReload = () => {
         window.location.reload();
     }
 
     if (currentRecipes.length === 0) {
         return (
-          <div className={styles.home}>
-              <div>
-                <Loading/>
-              </div>
-          </div>
+            <div className={styles.home}>
+                <div>
+                    <Loading />
+                </div>
+            </div>
         )
     } else {
         return (
 
             <div className={styles.home}>
-                
-                  <NavBar/>
-                  <hr></hr>
-                {/* <div>
-                    <SearchBar setCurrentPage={setCurrentPage} />
-                </div> */}
+
+                <NavBar />
+                <hr></hr>
                 <div>
                     <div className={styles.contenedor}>
 
-                    <select className={styles.filter} onChange={e => { handleName(e) }}>
+                        <select className={styles.filter} onChange={e => { handleName(e) }}>
                             <option value='todos'>Ordenar ⇅</option>
                             <option value='asc'>A - Z</option>
                             <option value='desc'>Z - A</option>
@@ -115,18 +111,17 @@ export default function Home() {
                         </select>
 
                         <select className={styles.filter} onChange={e => handleFilterDiet(e)}>
-                        <option value="All">Filtrar por dietas </option>
-                        <option value="vegan"> Vegan </option>
-                        <option value="dairy free"> Dairy free </option>
-                        <option value="lacto ovo vegetarian"> Lacto ovo vegetarian </option>
-                        <option value="lacto-Vegetarian"> Lacto-Vegetarian </option>
-                        <option value="pescatarian"> Pescatarian </option>
-                        <option value="primal"> Primal </option>
-                        <option value="paleolithic"> Paleolithic </option>
-                        <option value="fodmap friendly"> Fodmap friendly </option>
-                        <option value="Ketogenic"> Ketogenic </option>
-                        <option value="Whole30"> Whole30 </option>
-                            
+                            <option value="All">Filtrar por dietas </option>
+                            <option value="vegan"> Vegan </option>
+                            <option value="dairy free"> Dairy free </option>
+                            <option value="lacto ovo vegetarian"> Lacto ovo vegetarian </option>
+                            <option value="lacto-Vegetarian"> Lacto-Vegetarian </option>
+                            <option value="pescatarian"> Pescatarian </option>
+                            <option value="primal"> Primal </option>
+                            <option value="paleolithic"> Paleolithic </option>
+                            <option value="fodmap friendly"> Fodmap friendly </option>
+                            <option value="Ketogenic"> Ketogenic </option>
+                            <option value="Whole30"> Whole30 </option>
                         </select>
 
                         <select className={styles.filter} onChange={e => handleFilterCreatedOrApi(e)}>
@@ -135,11 +130,8 @@ export default function Home() {
                             <option value="api">Existentes</option>
                         </select>
 
-                        <button className={styles.reload} onClick={e => { handleReload() }}>
-                        ⟳
-                        </button>
+                        <button className={styles.reload} onClick={e => { handleReload() }}>⟳</button>
 
-                       
                     </div>
 
                     <Paginated
@@ -152,33 +144,22 @@ export default function Home() {
                         {
                             currentRecipes.map(el => {
                                 return (
-                                  <div>
-                                  <Link to={"/recipes/" + el.id} style={{ textDecoration: 'none' }}>
-                                    <Cards  
-                                      id={el.id}
-                                      name={el.name}
-                                      image={el.image}
-                                      diets={el.diets}
-                                      healthScore={el.healthScore} />
-                                  </Link>
-                                </div>
+                                    <div>
+                                        <Link to={"/recipes/" + el.id} style={{ textDecoration: 'none' }}>
+                                            <Cards
+                                                id={el.id}
+                                                name={el.name}
+                                                image={el.image}
+                                                diets={el.diets}
+                                                healthScore={el.healthScore} />
+                                        </Link>
+                                    </div>
                                 )
                             })
-
                         }
-
-
                     </div>
-
                 </div>
-
-        
-
             </div>
-
-
         )
-
-
     }
 }
