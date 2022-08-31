@@ -34,10 +34,9 @@
 }
 
 .contenedor select {
-  width: 250px;
+  width: 230px;
   border: none;
   color: #090909;
-  padding: 0.7em 1.7em;
   margin: 10px;
   font-size: 16px;
   border-radius: 0.5em;
@@ -45,9 +44,36 @@
   border: 1px solid #e8e8e8;
   transition: all 0.3s;
   cursor: pointer;
+  text-align: center;
 }
 
 .contenedor select:hover {
+  border: 1px solid white;
+}
+
+.contenedor .filterOrder {
+  width: 160px;
+  border: none;
+  color: #090909;
+  padding: 0.7em;
+  margin: 10px;
+  font-size: 16px;
+  border-radius: 0.5em;
+  background: #d7d7d789;
+  border: 1px solid #e8e8e8;
+  transition: all 0.3s;
+  cursor: pointer;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.contenedor select option{
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+.contenedor .filterOrder:hover {
   border: 1px solid white;
 }
 

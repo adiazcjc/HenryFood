@@ -40,6 +40,7 @@ export function getDetails(id) {
     }
 }
 
+
 export function postRecipe(payload) {
     return async function (dispatch) {
         const recipeCreated = await axios.post("http://localhost:3001/recipes", payload)
@@ -96,3 +97,5 @@ export function getClean(){
       type: 'GET_CLEAN',
     }
   }
+
+ 

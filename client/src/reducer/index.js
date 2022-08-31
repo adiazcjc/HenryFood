@@ -1,10 +1,8 @@
-
-
 const initialState = {
     recipes: [],
     allRecipes: [],
     diets: [],
-    detail: {}
+    detail: {},
 }
 
 function rootReducer(state = initialState, action) {
@@ -16,9 +14,17 @@ function rootReducer(state = initialState, action) {
                 allRecipes: action.payload
             }
         case 'SEARCH_NAME':
-            return {
-                ...state,
-                recipes: action.payload
+            let fullRecipes = state.allRecipes
+            if (action.payload.length){
+                return {
+                    ...state,
+                    recipes: action.payload
+                }
+            }else{
+                return{
+                    ...state,
+                    recipes: fullRecipes.concat(alert("El nombre ingresado no existe"))
+                }
             }
         case 'GET_DIETS':
             return {
@@ -94,10 +100,10 @@ function rootReducer(state = initialState, action) {
                 ...state,
             }
         case 'GET_CLEAN':
-        return{
+            return{
             ...state,
             datail: {}
-        }    
+        }   
         default:
             return state;
     }

@@ -51,6 +51,13 @@ export default function Home() {
         setCurrentPage(1)
     }
 
+    function handleForScore(e) {
+        e.preventDefault();
+        dispatch(orderForScore(e.target.value));
+        setCurrentPage(1);
+        setOrder(`Ordenado ${e.target.value}`)
+    }
+
     function handleFilterDiet(e) {
         e.preventDefault();
         dispatch(filterDiet(e.target.value))
@@ -67,13 +74,6 @@ export default function Home() {
         e.preventDefault();
         dispatch(orderForName(e.target.value))
         setCurrentPage(1)
-    }
-
-    function handleForScore(e) {
-        e.preventDefault();
-        dispatch(orderForScore(e.target.value));
-        setCurrentPage(1);
-        setOrder(`Ordenado ${e.target.value}`)
     }
 
     const handleReload = () => {
@@ -98,19 +98,19 @@ export default function Home() {
                 <div>
                     <div className={styles.contenedor}>
 
-                        <select className={styles.filter} onChange={e => { handleName(e) }}>
+                        <select className={styles.filterOrder} onChange={e => { handleName(e) }}>
                             <option value='todos'>Ordenar ⇅</option>
                             <option value='asc'>A - Z</option>
                             <option value='desc'>Z - A</option>
                         </select>
 
-                        <select className={styles.filter} onChange={e => handleForScore(e)}>
+                        <select onChange={e => handleForScore(e)}>
                             <option value="all">Ordenar por Score</option>
                             <option value="max">Máximo</option>
                             <option value="min">Mínimo</option>
                         </select>
 
-                        <select className={styles.filter} onChange={e => handleFilterDiet(e)}>
+                        <select onChange={e => handleFilterDiet(e)}>
                             <option value="All">Filtrar por dietas </option>
                             <option value="vegan"> Vegan </option>
                             <option value="dairy free"> Dairy free </option>
@@ -124,13 +124,13 @@ export default function Home() {
                             <option value="Whole30"> Whole30 </option>
                         </select>
 
-                        <select className={styles.filter} onChange={e => handleFilterCreatedOrApi(e)}>
+                        <select onChange={e => handleFilterCreatedOrApi(e)}>
                             <option value="recipes">Creados o Existentes</option>
                             <option value="data_base">Creados</option>
                             <option value="api">Existentes</option>
                         </select>
 
-                        <button className={styles.reload} onClick={e => { handleReload() }}>⟳</button>
+                        <button onClick={e => { handleReload() }}>⟳</button>
 
                     </div>
 

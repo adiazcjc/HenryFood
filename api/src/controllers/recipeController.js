@@ -1,6 +1,6 @@
 require('dotenv').config();
 const axios = require('axios');
-const APIKEY = process.env.APIKEY5
+const APIKEY = process.env.APIKEY2
 const { Recipe, Diet } = require('../db');
 
 //FUNCION PARA TRAER LAS RECETAS DE LA API

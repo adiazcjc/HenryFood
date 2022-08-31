@@ -3,9 +3,11 @@ import { postRecipe, getDiets } from '../actions'
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './Form.module.css'
 import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 
 export default function RecipeCreate() {
+    const history = useHistory();
     const dispatch = useDispatch();
     const diets = useSelector((state) => state.diets)
     console.log(diets)
@@ -31,10 +33,12 @@ export default function RecipeCreate() {
     }
     
     function handleSelect(e) {
-        setInput({
-            ...input,
-            diets: [...input.diets, e.target.value]
-        })
+        if(!input.diets.includes(e.target.value)){
+            setInput({
+                ...input,
+                diets: [...input.diets, e.target.value]
+            })
+        }
     }
 
     function handleSubmit(e) {
@@ -71,6 +75,8 @@ export default function RecipeCreate() {
             steps: "",
             diets: []
         })
+        history.push("/home");
+        document.location.reload();
     }
 
     function handleClear(){
@@ -151,7 +157,7 @@ export default function RecipeCreate() {
 
                         <div>
                             <label>Nivel de "comida saludable" :</label>
-                            <input type="range" name="healthScore" onChange={handleChange} style={{ width: '70%', height: '60px', fontSize:'15px', textAlign:'center' }} min="1" max="100"  required />
+                            <input type="range" name="healthScore" onChange={handleChange} style={{width: '70%', height: '60px', fontSize:'15px', textAlign:'center' }} min="1" max="100"  required />
                             <h5>{input.healthScore + '%'}</h5>
                         </div>
                         <br />

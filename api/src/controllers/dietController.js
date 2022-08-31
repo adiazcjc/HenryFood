@@ -25,7 +25,6 @@ const getAllDiets = async (req, res) => {
     res.send(allTypes)
 }
 
-
 module.exports = {
     getAllDiets
 };
