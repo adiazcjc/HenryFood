@@ -40,16 +40,6 @@ export default function Home() {
         dispatch(getRecipes())
     }, [dispatch])
 
-    useEffect(() => {
-        dispatch(getClean())
-    }, [dispatch])
-
-
-    function handleClick(e) {
-        e.preventDefault();
-        dispatch(getRecipes());
-        setCurrentPage(1)
-    }
 
     function handleForScore(e) {
         e.preventDefault();
@@ -139,19 +129,20 @@ export default function Home() {
                         allRecipes={allRecipes.length}
                         paginated={paginated}
                     />
-
                     <div className={styles.cards} >
                         {
-                            currentRecipes.map(el => {
+                            currentRecipes?.map(el => {
+                                
                                 return (
                                     <div>
                                         <Link to={"/recipes/" + el.id} style={{ textDecoration: 'none' }}>
                                             <Cards
-                                                id={el.id}
+                                                id={el.id} 
                                                 name={el.name}
                                                 image={el.image}
                                                 diets={el.diets}
-                                                healthScore={el.healthScore} />
+                                                healthScore={el.healthScore}
+                                                 />
                                         </Link>
                                     </div>
                                 )

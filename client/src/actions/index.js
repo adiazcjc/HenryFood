@@ -93,9 +93,8 @@ export function filterCreatedOrApi(payload) {
 }
 
 export function getClean(){
-    return{
-      type: 'GET_CLEAN',
+      return {
+        type: 'GET_CLEAN',
     }
   }
 
- 

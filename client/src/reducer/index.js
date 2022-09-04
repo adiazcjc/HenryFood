@@ -15,13 +15,13 @@ function rootReducer(state = initialState, action) {
             }
         case 'SEARCH_NAME':
             let fullRecipes = state.allRecipes
-            if (action.payload.length){
+            if (action.payload.length) {
                 return {
                     ...state,
                     recipes: action.payload
                 }
-            }else{
-                return{
+            } else {
+                return {
                     ...state,
                     recipes: fullRecipes.concat(alert("El nombre ingresado no existe"))
                 }
@@ -83,11 +83,16 @@ function rootReducer(state = initialState, action) {
         case 'FILTER_DIETS':
             const allRecipes = state.allRecipes;
             const dietsFilter = action.payload === 'All' ? allRecipes :
-            allRecipes.filter(el => el.diets.map(el => el.name).includes(action.payload))
+                allRecipes.filter(el => el.diets.map(el => el.name).includes(action.payload))
             const noDiet = allRecipes
             return {
                 ...state,
                 recipes: dietsFilter.length ? dietsFilter : noDiet.concat(alert("Aún no existen recetas con ese tipo de dieta"))
+            }
+
+        case 'POST_RECIPE':
+            return {
+                ...state,
             }
 
         case 'GET_DETAILS':
@@ -95,15 +100,12 @@ function rootReducer(state = initialState, action) {
                 ...state,
                 detail: action.payload
             }
-        case 'POST_RECIPE':
+
+        case 'GET_CLEAN':
             return {
                 ...state,
+                detail: {}
             }
-        case 'GET_CLEAN':
-            return{
-            ...state,
-            datail: {}
-        }   
         default:
             return state;
     }

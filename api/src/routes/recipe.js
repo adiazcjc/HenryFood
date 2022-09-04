@@ -68,4 +68,18 @@ router.post("/recipes", async (req, res) => {
   }
 });
 
+//RUTA PARA ELIMINAR UNA RECETA
+
+router.delete('/:id', async (req, res) => {
+  try {
+      let { id } = req.params;
+      await Recipe.destroy({
+          where: { id }
+      })
+      res.status(201).json('Receta eliminada con éxito')
+  } catch (err) {
+      res.status(418).json(err.message)
+  }
+})
+
 module.exports = router;

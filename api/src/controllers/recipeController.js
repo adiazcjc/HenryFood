@@ -1,6 +1,6 @@
 require('dotenv').config();
 const axios = require('axios');
-const APIKEY = process.env.APIKEY2
+const APIKEY = process.env.APIKEY11
 const { Recipe, Diet } = require('../db');
 
 //FUNCION PARA TRAER LAS RECETAS DE LA API
@@ -8,6 +8,7 @@ const { Recipe, Diet } = require('../db');
 const getApi = async () => {
 
     const listRecipes = (await axios.get(`https://api.spoonacular.com/recipes/complexSearch?number=100&addRecipeInformation=true&apiKey=${APIKEY}`)).data;
+
     const dataRecipes = await listRecipes.results.map((el) => {
         return {
             id: el.id,
@@ -113,5 +114,7 @@ const getDbInfo = async () => {
         }
     })
 }
+
+
 
 module.exports = { getAllRecipes, idSearch, getDbInfo };
